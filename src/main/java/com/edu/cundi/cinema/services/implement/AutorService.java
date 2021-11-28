@@ -52,7 +52,7 @@ public class AutorService implements IAutorService {
         return respuesta;
     }
 
-    public Autor getAutorById(Integer Id) throws ModelNotFoundException {
+    public Autor ExistAutorById(Integer Id) throws ModelNotFoundException {
         Optional<Autor> autor = _autorRepository.findById(Id);
         if (!autor.isPresent()) {
             throw new ModelNotFoundException("Este autor no existe.");
@@ -62,7 +62,7 @@ public class AutorService implements IAutorService {
 
     @Override
     public RespuestaDTO getById(Integer Id) throws ModelNotFoundException {
-        respuesta.setData(getAutorById(Id));
+        respuesta.setData(ExistAutorById(Id));
         respuesta.setMensaje("encontrado");
         return respuesta;
     }
@@ -134,7 +134,7 @@ public class AutorService implements IAutorService {
 
     @Override
     public RespuestaDTO delete(Integer Id) throws ModelNotFoundException {
-        getAutorById(Id);
+        ExistAutorById(Id);
         _autorRepository.deleteById(Id);
         respuesta.setMensaje("se ha eliminado.");
         return respuesta;
@@ -154,5 +154,12 @@ public class AutorService implements IAutorService {
         PaginarDTO paginar = new PaginarDTO(pageable.getPageNumber(), paginado.getTotalElements(),
                 pageable.getPageSize(), paginado.getTotalPages(), paginado.getNumberOfElements(), autoresDTOs);
         return paginar;
+    }
+
+    public void ExisteAutor(Integer idAutor) throws ModelNotFoundException {
+        boolean existe = _autorRepository.existeAutor(idAutor);
+        if (existe) {
+            throw new ModelNotFoundException("Esta editorial no existe.");
+        }  
     }
 }

@@ -1,75 +1,33 @@
 package com.edu.cundi.cinema.entity;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
+import lombok.Data;
 
 @Entity
-@Table(name = "editorial")
+@Data
+@Table(name = "editorial", schema = "libros")
 public class Editorial {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(name = "nit", length = 12, nullable = false, unique = true)
-	private String nit;	
-	
+	private String nit;
+
 	@Column(name = "nombre", length = 15, nullable = false)
 	private String nombre;
-	
+
 	@Column(name = "correo", length = 60, nullable = false, unique = true)
+	@Email(message = "Email incorrecto")
 	private String correo;
-	
-	
-	
-	public Editorial() {
-		super();
-	}
-
-	public Editorial(String nit, String nombre, String correo) {
-		super();
-		this.nit = nit;
-		this.nombre = nombre;
-		this.correo = correo;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNit() {
-		return nit;
-	}
-
-	public void setNit(String nit) {
-		this.nit = nit;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getCorreo() {
-		return correo;
-	}
-
-	public void setCorreo(String correo) {
-		this.correo = correo;
-	}
 
 	@Override
 	public int hashCode() {
@@ -95,11 +53,5 @@ public class Editorial {
 			return false;
 		return true;
 	}
-	
-	
-	
 
 }
-
-    
-

@@ -23,4 +23,7 @@ public interface IAutorRepository extends JpaRepository<Autor, Integer> {
 
     public Boolean existsByCorreo(String correo);
 
+    @Query(value = "SELECT CASE  WHEN count(aut)> 0 THEN true ELSE false END FROM libros.autor aut where aut.id = ?", nativeQuery = true)
+    public Boolean existeAutor(Integer id);
+
 }

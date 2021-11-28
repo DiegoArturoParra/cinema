@@ -1,66 +1,26 @@
 package com.edu.cundi.cinema.entity;
 
-
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 @Entity
-@Table(name = "autor_editorial")
+@Data
+@Table(name = "autor_editorial", schema = "libros")
 @IdClass(AutorEditorialPK.class)
 public class AutorEditorial {
-	
+
 	@Id
 	private Autor autor;
-	
+
 	@Id
 	private Editorial editorial;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-	@Column(name = "fecha", nullable = false)
-	private LocalDate fecha;
-	
-	public AutorEditorial() {
-		
-		
-	}
-
-	public AutorEditorial(Autor autor, Editorial editorial, LocalDate fecha) {
-		super();
-		this.autor = autor;
-		this.editorial = editorial;
-		this.fecha = fecha;
-	}
-
-	public Autor getAutor() {
-		return autor;
-	}
-
-	public void setAutor(Autor autor) {
-		this.autor = autor;
-	}
-
-	public Editorial getEditorial() {
-		return editorial;
-	}
-
-	public void setEditorial(Editorial editorial) {
-		this.editorial = editorial;
-	}
-
-	public LocalDate getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(LocalDate fecha) {
-		this.fecha = fecha;
-	}
-
+	@Column(name = "fecha_creacion", nullable = false)
+	private LocalDateTime fecha;
 }
-

@@ -59,7 +59,7 @@ public class LibroService implements ILibroService {
 
     @Override
     public RespuestaDTO create(Libro entidad) throws ConflictException, ModelNotFoundException {
-        Autor autor = autorService.getAutorById(entidad.getAutor().getId());
+        Autor autor = autorService.ExistAutorById(entidad.getAutor().getId());
         entidad.setAutor(autor);
         _libroRepository.save(entidad);
         respuesta.setMensaje("creado");
@@ -76,7 +76,7 @@ public class LibroService implements ILibroService {
 
     @Override
     public RespuestaDTO edit(Libro entidad) throws ConflictException, ModelNotFoundException {
-        autorService.getAutorById(entidad.getAutor().getId());
+        autorService.ExistAutorById(entidad.getAutor().getId());
         Libro libro = getLibroById(entidad.getId());
         libro.setDescripcion(entidad.getDescripcion());
         libro.setFechaDeSalida(entidad.getFechaDeSalida());
