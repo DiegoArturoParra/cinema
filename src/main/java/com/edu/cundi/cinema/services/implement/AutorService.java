@@ -158,8 +158,8 @@ public class AutorService implements IAutorService {
 
     public void ExisteAutor(Integer idAutor) throws ModelNotFoundException {
         boolean existe = _autorRepository.existeAutor(idAutor);
-        if (existe) {
-            throw new ModelNotFoundException("Esta editorial no existe.");
+        if (!existe) {
+            throw new ModelNotFoundException("Este autor no existe.");
         }  
     }
 }

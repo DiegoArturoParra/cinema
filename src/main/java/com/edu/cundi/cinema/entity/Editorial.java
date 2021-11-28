@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -18,15 +19,15 @@ public class Editorial {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
+	@Size(min = 8, max = 12, message = "El nit debe estar entre 8 y 12 caracteres")
 	@Column(name = "nit", length = 12, nullable = false, unique = true)
 	private String nit;
 
-	@Column(name = "nombre", length = 15, nullable = false)
+	@Column(name = "nombre", columnDefinition = "text", nullable = false)
 	private String nombre;
 
 	@Column(name = "correo", length = 60, nullable = false, unique = true)
-	@Email(message = "Email incorrecto")
+	@Email(message = "Email incorrecto.")
 	private String correo;
 
 	@Override

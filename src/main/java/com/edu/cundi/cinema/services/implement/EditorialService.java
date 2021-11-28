@@ -2,6 +2,8 @@ package com.edu.cundi.cinema.services.implement;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import com.edu.cundi.cinema.DTOs.AutorEditorialDTO;
 import com.edu.cundi.cinema.DTOs.PaginarDTO;
 import com.edu.cundi.cinema.DTOs.RespuestaDTO;
@@ -92,7 +94,7 @@ public class EditorialService implements IEditorialService {
 
     private void existeEditorial(Integer id) throws ModelNotFoundException {
         boolean existe = _editorialRepository.existeEditorial(id);
-        if (existe) {
+        if (!existe) {
             throw new ModelNotFoundException("Esta editorial no existe.");
         }
     }
@@ -104,10 +106,11 @@ public class EditorialService implements IEditorialService {
     }
 
     @Override
+    @Transactional
     public RespuestaDTO createEditorialWithAutor(AutorEditorialDTO objeto)
             throws ConflictException, ModelNotFoundException {
         _autorService.ExisteAutor(objeto.getIdAutor());
-        existEditorialById(objeto.getIdEditorial());
+        existeEditorial(objeto.getIdEditorial());
         _autorEditorialRepository.guardarNativo(objeto.getIdAutor(), objeto.getIdEditorial(), objeto.getFecha());
         respuesta.setMensaje("creado");
         return respuesta;

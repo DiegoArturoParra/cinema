@@ -39,7 +39,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/autores/**").authenticated()
-                .antMatchers("/editoriales/**").authenticated()
+                .antMatchers("/editoriales/**").hasAuthority("superadmin")
                 .antMatchers("/libros/**").hasAnyAuthority(roles)
                 .antMatchers("/account/signOut/**").authenticated()
                 .antMatchers("/account/crear-rol").hasAuthority("superadmin")
