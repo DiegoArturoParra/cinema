@@ -1,12 +1,7 @@
 pipeline {
 
     agent any
-
-    environment {
-        
-        VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
-    }	
-
+    
     tools {
         // Install the Maven version configured and add it to the path.
         maven "MAVEN"
@@ -40,7 +35,7 @@ pipeline {
             steps {
                 
                 script {
-                     bat "docker run -d --name libreria-api-${env.BUILD_ID} -p 9000:9000 libreria-api-1.0:${VERSION}"
+                     bat "docker run -d --name libreria-api-${env.BUILD_ID} -p 9000:9000 libreria-api-${env.BUILD_ID}:latest"
                 }
             }
         }
