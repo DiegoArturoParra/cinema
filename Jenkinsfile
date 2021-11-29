@@ -2,6 +2,10 @@ pipeline {
 
     agent any
 
+    environment {
+         def ID = ${env.BUILD_ID}	
+    }
+
     tools {
         // Install the Maven version configured and add it to the path.
         maven "MAVEN"
@@ -35,9 +39,8 @@ pipeline {
         stage('Remove previous image docker ') {
             steps {
                 script {
-                     def ID = ${env.BUILD_ID}	
                      def remove = ID-1
-                    echo "el anterior es: ${remove}"
+                     echo "el anterior es: ${remove}"
                      bat "docker rm -f libreria-api-${remove}"
                      bat "docker rmi libreria-api-${remove}"
                 }
