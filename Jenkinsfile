@@ -1,15 +1,16 @@
-pipeline {
-    agent any
+node {
+    def app
+
+    stage('Clone repository') {
+        /* Let's make sure we have the repository cloned to our workspace */
+
+        checkout scm
+    }
     tools {
         maven 'MAVEN'
         jdk 'jdk8'
         docker 'Docker'
     }
-    stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
-        checkout scm
-    }
-
     stage('Initialize'){
         steps{
             echo "PATH = ${M2_HOME}/bin:${PATH}"
