@@ -33,8 +33,8 @@ pipeline {
         stage('push docker image') {
             steps {  
                 script {
-                    withCredentials([usernameColonPassword(credentialsId: 'fd2ad875-c57c-4fdd-923d-90b5b799b321', variable: 'docker hub')]) {
-                          bat 'docker login -u diegoparra15 -p ${docker hub}'
+                    withCredentials([usernameColonPassword(credentialsId: 'a9c637ad-c04b-47f2-b91d-4b9787866fb5', variable: 'docker-hub')]) {
+                          bat 'docker login -u diegoparra15 -p ${docker-hub}'
                           bat 'docker push diegoparra15/libreria-1.0'
                         }
                 }
