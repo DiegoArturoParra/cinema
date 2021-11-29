@@ -29,22 +29,13 @@ pipeline {
                 
             }
         }
-    // Running Docker container, make sure port 8096 is opened in 
-        stage('Docker Removed contenedor and imagen') {
-            steps {
-                
-                script {
-                     bat 'docker rmi libreria-api-1.0'
-                     bat 'docker rm -f libreria-api-1.0'
-                }
-            }
-        }
+    
         // Running Docker container, make sure port 8096 is opened in 
         stage('Docker Run') {
             steps {
                 
                 script {
-                     bat 'docker run -d --name libreria-api-1.0 -p 9000:9000 libreria-api-1.0:$BUILD_NUMBER'
+                     bat 'docker run -d --name libreria-api-1.0 -p 9000:9000 libreria-api-1.0:${env.BUILD_NUMBER}'
                 }
             }
         }
