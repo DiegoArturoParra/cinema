@@ -24,9 +24,28 @@ pipeline {
             steps {
                 
                 script {
-                     bat 'docker build -t diegoparra15/libreria-1.0 .'
+                     bat 'docker build -t libreria-api-1.0 .'
                 }
                 
+            }
+        }
+             // Stopping Docker containers for cleaner Docker run
+        stage('docker stop container') {
+            steps {
+
+                script {
+                    bat 'docker ps -f name=libreria-api-1.0 -q | xargs --no-run-if-empty docker container stop'
+                    bat 'docker container ls -a -fname=libreria-api-1.0 -q | xargs -r docker container rm'
+                }
+            }
+        }
+        // Running Docker container, make sure port 8096 is opened in 
+        stage('Docker Run') {
+            steps {
+                
+                script {
+                    dockerImage.run("-p 9000:9000 --rm --name libreria-api-1.0")
+                }
             }
         }
     }
