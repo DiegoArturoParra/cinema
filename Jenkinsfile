@@ -21,20 +21,15 @@ pipeline {
             }
         }
         stage('build image') {
-            steps {
-                
-                app = docker.build('diegoparra15/libreria-1.0')
-            }
+            
+            app = docker.build('diegoparra15/libreria-1.0')        
         }
         
         stage('push image') {
-            steps {
-                
-               docker.withRegistry('', 'docker credentials') {
-                   app.push("${env.BUILD_ID}")
-                   app.push('latest')
-               }
-                
+            
+            docker.withRegistry('', 'docker credentials') {
+                app.push("${env.BUILD_ID}")
+                app.push('latest')
             }
         }
     }
