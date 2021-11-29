@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-         def ID = ${env.BUILD_ID}	
+         ID = ${env.BUILD_ID}	
     }
 
     tools {
@@ -39,6 +39,7 @@ pipeline {
         stage('Remove previous image docker ') {
             steps {
                 script {
+                    echo "ID ANTERIOR: ${ID}"
                      def remove = ID-1
                      echo "el anterior es: ${remove}"
                      bat "docker rm -f libreria-api-${remove}"
