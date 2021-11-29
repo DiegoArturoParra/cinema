@@ -4,6 +4,7 @@ pipeline {
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "MAVEN"
+        jdk "jdk8"
     }
 
     stages {
@@ -17,6 +18,25 @@ pipeline {
 
                 // To run Maven on a Windows agent, use
                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+        }
+        stage('build image') {
+            steps {
+                
+                script {
+                     bat 'docker build -t diegoparra15/libreria-1.0 .'
+                }
+                
+            }
+        }
+        
+        stage('run image') {
+            steps {
+                
+                script {
+                     bat 'docker run --rm diegoparra15/libreria-1.0'
+                }
+                
             }
         }
     }
