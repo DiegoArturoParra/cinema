@@ -13,10 +13,10 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '2e563532-13d9-4f55-9711-f60ca7df705f', url: 'https://github.com/DiegoArturoParra/cinema.git']]])
 
                 // Run Maven on a Unix agent.
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                //sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
                 // To run Maven on a Windows agent, use
-                 //bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
     }
