@@ -1,7 +1,11 @@
 pipeline {
 
     agent any
-    
+
+    environment {
+        anterior = ${env.BUILD_ID}-1
+    }
+
     tools {
         // Install the Maven version configured and add it to the path.
         maven "MAVEN"
@@ -30,10 +34,20 @@ pipeline {
                 
             }
         }
+
+        // Remove previous image docker 
+        stage('Remove previous image docker ') {
+            steps {
+                script {
+                     bat "docker rm -f libreria-api-${anterior}"
+                     bat "docker rmi libreria-api-${anterior}"
+                }
+            }
+        }
+
         // Running Docker container, make sure port 8096 is opened in 
         stage('Docker Run') {
             steps {
-                
                 script {
                      bat "docker run -d --name libreria-api-${env.BUILD_ID} -p 9000:9000 libreria-api-${env.BUILD_ID}:latest"
                 }
@@ -43,7 +57,7 @@ pipeline {
             steps {
                 script {
                      echo 'ha subido satisfactoriamente los cambios.'
-                     bat "docker rmi libreria-api-${env.BUILD_ID}"
+                  
                 }
             }
         }
