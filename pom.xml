@@ -10,10 +10,10 @@
         <!-- lookup parent from repository -->
     </parent>
     <groupId>com.edu.cundi</groupId>
-    <artifactId>cinema</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>libreria-api</artifactId>
+    <version>1.0</version>
     <packaging>war</packaging>
-    <name>cinema</name>
+    <name>libreria-api</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>8</java.version>
