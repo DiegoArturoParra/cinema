@@ -1,11 +1,12 @@
-node {
-    def app
+/* groovylint-disable-next-line CompileStatic */
+pipeline {
 
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
 
         checkout scm
     }
+    agent any
     tools {
         maven 'MAVEN'
         jdk 'jdk8'
@@ -14,14 +15,15 @@ node {
     stage('Initialize'){
         steps{
             echo "PATH = ${M2_HOME}/bin:${PATH}"
-            echo "M2_HOME = /opt/maven"
         }
     }
-     stage('Build artifact') {
+    stage('Build artifact') {
     /* Let's make sure we have the repository cloned to our workspace */
-        bat 'echo "Do compilation"'
-        bat 'mvn package'
-        bat 'echo "Pass compilation"'
+        steps {
+            bat 'echo "Do compilation"'
+            bat 'mvn package'
+            bat 'echo "Pass compilation"'
+        }
     }
     stage('Build image') {
     /* This builds the actual image; synonymous to
