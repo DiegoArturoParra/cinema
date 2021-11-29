@@ -1,9 +1,11 @@
 pipeline {
+
     agent any
 
     environment {
+        
         VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
-    }
+    }	
 
     tools {
         // Install the Maven version configured and add it to the path.
@@ -33,13 +35,22 @@ pipeline {
                 
             }
         }
-    
+    // Removing
+        stage('Docker Removed contenedor and imagen') {
+            steps {
+                
+                script {
+                     bat 'docker rm -f libreria-api-1.0'
+                }
+            }
+        }
+
         // Running Docker container, make sure port 8096 is opened in 
         stage('Docker Run') {
             steps {
                 
                 script {
-                     bat "docker run -d --name libreria-api-1.0 -p 9000:9000 libreria-api-1.0:${VERSION}"
+                     bat "docker run -d --name libreria-api-${env.BUILD_ID} -p 9000:9000 libreria-api-1.0:${VERSION}"
                 }
             }
         }
@@ -48,6 +59,7 @@ pipeline {
                 
                 script {
                      echo 'ha subido satisfactoriamente los cambios.'
+                     bat "docker rmi libreria-api-${env.BUILD_ID}"
                 }
             }
         }
