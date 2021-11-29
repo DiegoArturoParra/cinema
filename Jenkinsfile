@@ -41,7 +41,7 @@ pipeline {
                 script {
                     echo "ID ANTERIOR: ${ID}"
                      int intNum = ID.toInteger()
-                     def remove = ID-1
+                     def remove = intNum-1
                      echo "el anterior es: ${remove}"
                      bat "docker rm -f libreria-api-${remove}"
                      bat "docker rmi libreria-api-${remove}"
