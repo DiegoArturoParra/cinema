@@ -1,26 +1,22 @@
-node {
-    def app
-
-    stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
-
-        checkout scm
-    }
+pipeline {
+    agent any
     tools {
         maven 'MAVEN'
         jdk 'jdk8'
         docker 'Docker'
     }
+    stage('Clone repository') {
+        /* Let's make sure we have the repository cloned to our workspace */
+        checkout scm
+    }
     stages {
-        stage ('Initialize') {
-            steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
+        stage('Initialize'){
+            steps{
+                echo "PATH = ${M2_HOME}/bin:${PATH}"
+                echo "M2_HOME = /opt/maven"
             }
         }
-        stage('Build artifact') {
+         stage('Build artifact') {
         /* Let's make sure we have the repository cloned to our workspace */
             bat 'echo "Do compilation"'
             bat 'mvn package'
@@ -53,5 +49,5 @@ node {
                 app.push('latest')
             }
         }
-    }
+     }
 }
