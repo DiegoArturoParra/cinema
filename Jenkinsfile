@@ -3,7 +3,6 @@ pipeline {
     tools {
         maven 'MAVEN'
         jdk 'jdk8'
-        docker 'Docker'
     }
     stages {
         stage('Initialize') {
