@@ -24,7 +24,7 @@ pipeline {
             steps {
                 
                 script {
-                     bat 'docker build -t libreria-1.0 .'
+                     bat 'docker build -t diegoparra15/libreria-1.0 .'
                 }
                 
             }
