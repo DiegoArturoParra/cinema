@@ -30,21 +30,11 @@ pipeline {
             steps {
                 
                 script {
-                     bat 'docker build -t libreria-api-1.0 .'
+                     bat "docker build -t libreria-api-${env.BUILD_ID} ."
                 }
                 
             }
         }
-    // Removing
-        stage('Docker Removed contenedor and imagen') {
-            steps {
-                
-                script {
-                     bat 'docker rm -f libreria-api-1.0'
-                }
-            }
-        }
-
         // Running Docker container, make sure port 8096 is opened in 
         stage('Docker Run') {
             steps {
@@ -56,7 +46,6 @@ pipeline {
         }
         stage('Docker terminated') {
             steps {
-                
                 script {
                      echo 'ha subido satisfactoriamente los cambios.'
                      bat "docker rmi libreria-api-${env.BUILD_ID}"
