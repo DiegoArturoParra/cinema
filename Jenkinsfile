@@ -21,15 +21,23 @@ pipeline {
             }
         }
         stage('build image') {
-            
-            app = docker.build('diegoparra15/libreria-1.0')        
+            steps {
+                
+                script {
+                     bat 'docker build -t libreria-1.0 .'
+                }
+                
+            }
         }
         
-        stage('push image') {
-            
-            docker.withRegistry('', 'docker credentials') {
-                app.push("${env.BUILD_ID}")
-                app.push('latest')
+        stage('push docker image') {
+            steps {  
+                script {
+                    withCredentials([usernameColonPassword(credentialsId: 'fd2ad875-c57c-4fdd-923d-90b5b799b321', variable: 'docker hub')]) {
+                          bat 'docker login -u diegoparra15 -p ${docker hub}'
+                          bat 'docker push diegoparra15/libreria-1.0'
+                        }
+                }
             }
         }
     }
