@@ -15,7 +15,7 @@ node {
     stage('Build artifact') {
         /* Let's make sure we have the repository cloned to our workspace */
        bat 'echo "Do compilation"'
-       bat 'C:\apache-maven-3.8.4\bin mvn package'
+       bat 'mvn package'
        bat 'echo "Pass compilation"'
     }
 
