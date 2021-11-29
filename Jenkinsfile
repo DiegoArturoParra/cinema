@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        // Install the Maven version configured as "M3" and add it to the path.
+        // Install the Maven version configured and add it to the path.
         maven "MAVEN"
         jdk "jdk8"
     }
@@ -35,7 +35,7 @@ pipeline {
             steps {
                 
                 script {
-                     bat 'docker run -p 9000:9000 --rm --name libreria-api-1.0'
+                     bat 'docker run --name libreria-api-1.0 -p 9000:9000 libreria-api-1.0:latest'
                 }
             }
         }
