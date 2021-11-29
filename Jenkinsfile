@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        anterior = ${env.BUILD_ID}-1
+        anterior = ${env.BUILD_ID-1}
     }
 
     tools {
