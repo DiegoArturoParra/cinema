@@ -34,7 +34,7 @@ pipeline {
             steps {
                 
                 script {
-                     bat 'docker rmi -f libreria-api-1.0'
+                     bat 'docker rmi libreria-api-1.0'
                      bat 'docker rm -f libreria-api-1.0'
                 }
             }
