@@ -35,7 +35,7 @@ pipeline {
             steps {
                 
                 script {
-                    dockerImage.run("-p 9000:9000 --rm --name libreria-api-1.0")
+                     bat 'docker run -p 9000:9000 --rm --name libreria-api-1.0'
                 }
             }
         }
