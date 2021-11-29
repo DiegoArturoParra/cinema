@@ -39,5 +39,13 @@ pipeline {
                 }
             }
         }
+        stage('Docker terminated') {
+            steps {
+                
+                script {
+                     echo 'ha subido satisfactoriamente los cambios.'
+                }
+            }
+        }
     }
 }
