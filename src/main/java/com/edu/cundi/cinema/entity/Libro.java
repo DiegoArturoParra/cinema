@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "libro")
+@Table(name = "libro", schema = "libros")
 public class Libro {
 
     @Id
