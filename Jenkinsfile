@@ -34,7 +34,7 @@ pipeline {
             steps {
                 
                 script {
-                     bat 'docker run --rm libreria-1.0'
+                     bat 'docker run -it -p 9000:9000 libreria-1.0'
                 }
                 
             }
