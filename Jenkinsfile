@@ -39,7 +39,7 @@ pipeline {
         stage('Remove previous image docker ') {
             steps {
                 script {
-                    echo "ID ANTERIOR: ${ID}"
+                    echo "ID: ${ID}"
                      int intNum = ID.toInteger()
                      int remove = intNum - 1
                      echo "el anterior es: ${remove}"
