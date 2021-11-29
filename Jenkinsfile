@@ -23,19 +23,17 @@ pipeline {
         stage('build image') {
             steps {
                 
-                script {
-                     bat 'docker build -t libreria-1.0 .'
-                }
-                
+                app = docker.build('diegoparra15/libreria-1.0')
             }
         }
         
-        stage('run image') {
+        stage('push image') {
             steps {
                 
-                script {
-                     bat 'docker run -it -p 9000:9000 libreria-1.0'
-                }
+               docker.withRegistry('', 'docker credentials') {
+                   app.push("${env.BUILD_ID}")
+                   app.push('latest')
+               }
                 
             }
         }
