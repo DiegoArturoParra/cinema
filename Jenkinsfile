@@ -29,16 +29,7 @@ pipeline {
                 
             }
         }
-             // Stopping Docker containers for cleaner Docker run
-        stage('docker stop container') {
-            steps {
 
-                script {
-                    bat 'docker ps -f name=libreria-api-1.0 -q | xargs --no-run-if-empty docker container stop'
-                    bat 'docker container ls -a -fname=libreria-api-1.0 -q | xargs -r docker container rm'
-                }
-            }
-        }
         // Running Docker container, make sure port 8096 is opened in 
         stage('Docker Run') {
             steps {

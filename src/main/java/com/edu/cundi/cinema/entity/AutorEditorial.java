@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "autor_editorial", schema = "libros")
+@Table(name = "autor_editorial")
 @IdClass(AutorEditorialPK.class)
 public class AutorEditorial {
 

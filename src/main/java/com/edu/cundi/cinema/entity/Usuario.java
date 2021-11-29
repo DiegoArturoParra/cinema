@@ -15,7 +15,7 @@ import javax.persistence.ForeignKey;
 
 @Entity
 @Data
-@Table(name = "usuario", schema = "usuarios")
+@Table(name = "usuario")
 public class Usuario {
 
 	@Id

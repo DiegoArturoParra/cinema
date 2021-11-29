@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "autor", schema = "libros")
+@Table(name = "autor")
 public class Autor {
     @Id
     @ApiModelProperty(notes = "Unique identificador del autor.", example = "1", position = 0)
