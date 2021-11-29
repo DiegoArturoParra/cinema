@@ -29,16 +29,5 @@ pipeline {
                 
             }
         }
-        
-        stage('push docker image') {
-            steps {  
-                script {
-                    withCredentials([usernameColonPassword(credentialsId: 'a9c637ad-c04b-47f2-b91d-4b9787866fb5', variable: 'docker-hub')]) {
-                          bat 'docker login -u diegoparra15 -p ${docker-hub}'
-                          bat 'docker push diegoparra15/libreria-1.0'
-                        }
-                }
-            }
-        }
     }
 }
