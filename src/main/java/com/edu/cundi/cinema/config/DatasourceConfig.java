@@ -1,4 +1,4 @@
-// package com.edu.cundi.cinema.config;
+package com.edu.cundi.cinema.config;
 
 // import javax.sql.DataSource;
 

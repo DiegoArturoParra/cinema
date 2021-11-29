@@ -8,12 +8,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "9000:9000" # Forward the exposed port 8080 on the container to port 8080 on the host machine
-    restart: always
     depends_on:
       - db
     environment:
-      - spring.datasource.driver-class-name=org.postgresql.Driver
-      - SPRING_JPA_DATABASE=postgresql
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
       - SPRING_DATASOURCE_USERNAME=compose-postgres
       - SPRING_DATASOURCE_PASSWORD=compose-postgres
