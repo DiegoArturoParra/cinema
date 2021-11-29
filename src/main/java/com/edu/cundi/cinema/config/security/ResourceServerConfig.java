@@ -42,7 +42,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/editoriales/**").hasAuthority("superadmin")
                 .antMatchers("/libros/**").hasAnyAuthority(roles)
                 .antMatchers("/account/signOut/**").authenticated()
-                .antMatchers("/account/crear-rol").anonymous()
+                .antMatchers("/account/crear-rol").hasAuthority("superadmin")
                 .antMatchers("/token/**").permitAll();
     }
 }
