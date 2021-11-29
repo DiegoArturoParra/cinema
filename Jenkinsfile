@@ -44,7 +44,7 @@ pipeline {
             steps {
                 
                 script {
-                     bat 'docker run -d --name libreria-api-1.0 -p 9000:9000 libreria-api-1.0:latest'
+                     bat 'docker run -d --name libreria-api-1.0 -p 9000:9000 libreria-api-1.0:$BUILD_NUMBER'
                 }
             }
         }
