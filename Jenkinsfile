@@ -29,7 +29,15 @@ pipeline {
                 
             }
         }
-
+    // Running Docker container, make sure port 8096 is opened in 
+        stage('Docker Removed') {
+            steps {
+                
+                script {
+                     bat 'docker --rm libreria-api-1.0'
+                }
+            }
+        }
         // Running Docker container, make sure port 8096 is opened in 
         stage('Docker Run') {
             steps {
