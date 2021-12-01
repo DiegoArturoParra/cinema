@@ -9,7 +9,7 @@ import com.edu.cundi.cinema.exception.ModelNotFoundException;
 
 public interface IEditorialService extends ICRUD<Editorial, Integer> {
 
-    public PaginarDTO getPaginarAutoresByEditorial(int page, int pageSize) throws ModelNotFoundException;
+    public PaginarDTO getPaginarAutoresByEditorial(int page, int pageSize, Integer editorial) throws ModelNotFoundException;
 
     public RespuestaDTO createEditorialWithAutor(AutorEditorialDTO objeto)
             throws ConflictException, ModelNotFoundException;

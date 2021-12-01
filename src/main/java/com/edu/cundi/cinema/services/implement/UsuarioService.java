@@ -86,13 +86,22 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 
     @Override
     public RespuestaDTO create(Usuario entidad) throws ConflictException, ModelNotFoundException {
+        respuesta = null;
         existeNickOfUser(entidad.getNick());
+        existeDocumento(entidad.getDocumento());
         Rol rol = existRolById(entidad.getRol().getIdRol());
         entidad.setRol(rol);
         entidad.setClave(bcrypt.encode(entidad.getClave()));
         _usuarioRepo.save(entidad);
         respuesta.setMensaje("usuario registrado satisfactoriamente.");
         return respuesta;
+    }
+
+    private void existeDocumento(String documento) throws ConflictException {
+        boolean existe = _usuarioRepo.existsByDocumento(documento);
+        if (existe) {
+            throw new ConflictException("el documento ya existe digite otro.");
+        }
     }
 
     @Override

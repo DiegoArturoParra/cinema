@@ -53,14 +53,14 @@ public class EditorialController {
                 return ResponseEntity.ok(service.getPaginado(page, pageSize));
         }
 
-        @ApiOperation(value = "Obtiene paginado de editoriales", response = Editorial.class)
+        @ApiOperation(value = "Obtiene paginado de autores por editorial", response = Editorial.class)
         @GetMapping(value = "paginar-autores-by-editorial", produces = MediaType.APPLICATION_JSON_VALUE)
-        @ApiResponses(value = { @ApiResponse(code = 200, message = "editoriales Encontradas"),
+        @ApiResponses(value = { @ApiResponse(code = 200, message = "obtiene Encontradas"),
                         @ApiResponse(code = 404, message = "editoriales no encontradas") })
         public ResponseEntity<PaginarDTO> getPaginarAutoresPorEditorial(@RequestParam int page,
-                        @RequestParam int pageSize)
+                        @RequestParam int pageSize, @RequestParam Integer editorial)
                         throws ModelNotFoundException {
-                return ResponseEntity.ok(service.getPaginarAutoresByEditorial(page, pageSize));
+                return ResponseEntity.ok(service.getPaginarAutoresByEditorial(page, pageSize, editorial));
         }
 
         @ApiOperation(value = "Crear editorial con autores")

@@ -11,4 +11,6 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     Usuario findOneByNick(String nick);
 
     Boolean existsByNick(String nick);
+
+    Boolean existsByDocumento(String documento);
 }

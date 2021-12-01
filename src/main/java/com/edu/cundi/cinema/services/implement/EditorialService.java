@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import com.edu.cundi.cinema.DTOs.AutorEditorialDTO;
 import com.edu.cundi.cinema.DTOs.PaginarDTO;
 import com.edu.cundi.cinema.DTOs.RespuestaDTO;
+import com.edu.cundi.cinema.entity.AutorEditorial;
 import com.edu.cundi.cinema.entity.Editorial;
 import com.edu.cundi.cinema.exception.ConflictException;
 import com.edu.cundi.cinema.exception.ModelNotFoundException;
@@ -16,6 +17,7 @@ import com.edu.cundi.cinema.services.interfaces.IEditorialService;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -100,9 +102,22 @@ public class EditorialService implements IEditorialService {
     }
 
     @Override
-    public PaginarDTO getPaginarAutoresByEditorial(int page, int pageSize) throws ModelNotFoundException {
-        // TODO Auto-generated method stub
-        return null;
+    public PaginarDTO getPaginarAutoresByEditorial(int page, int pageSize, Integer idEditorial)
+            throws ModelNotFoundException {
+
+
+        Pageable pageable = PageRequest.of(page, pageSize);
+        AutorEditorial dto = new AutorEditorial();
+        Editorial editorial = existEditorialById(idEditorial);
+        dto.setEditorial(editorial);
+        Example<AutorEditorial> example = Example.of(dto);
+
+        Page<AutorEditorial> paginado = _autorEditorialRepository.findAll(example, pageable);
+
+        PaginarDTO paginar = new PaginarDTO(pageable.getPageNumber(), paginado.getTotalElements(),
+                pageable.getPageSize(), paginado.getTotalPages(), paginado.getNumberOfElements(),
+                paginado.getContent());
+        return paginar;
     }
 
     @Override
