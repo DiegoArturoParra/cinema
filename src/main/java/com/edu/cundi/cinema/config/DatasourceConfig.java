@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class DatasourceConfig {
     @Bean
     public DataSource datasource() {
+    //cambios de servidor
         return DataSourceBuilder.create().driverClassName("org.postgresql.Driver")
                 .url("jdbc:postgresql://103.23.60.189/libreria").username("postgres").password("diego").build();
     }
