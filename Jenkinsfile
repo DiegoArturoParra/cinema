@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-         ID = "${env.BUILD_ID}"	+
+         ID = "${env.BUILD_ID}"	
     }
 
     tools {
