@@ -40,7 +40,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/autores/**").authenticated()
                 .antMatchers("/editoriales/**").hasAuthority("superadmin")
-                .antMatchers("/libros/**").hasAnyAuthority(roles)
+                .antMatchers("/libros/**").hasAnyAuthority("cliente")
                 .antMatchers("/account/signOut/**").authenticated()
                 .antMatchers("/account/crear-rol").hasAuthority("superadmin")
                 .antMatchers("/token/**").permitAll();
