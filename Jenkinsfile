@@ -34,21 +34,6 @@ pipeline {
                 
             }
         }
-
-        // Remove previouvs image docker 
-        stage('Remove previous image docker ') {
-            steps {
-                script {
-                    echo "ID: ${ID}"
-                     int intNum = ID.toInteger()
-                     int remove = intNum - 1
-                     echo "el anterior es: ${remove}"
-                     bat "docker rm -f libreria-api-${remove}"
-                     bat "docker rmi libreria-api-${remove}"
-                }
-            }
-        }
-
         // Running Docker container, make sure port 8096 is opened in 
         stage('Docker Run') {
             steps {
